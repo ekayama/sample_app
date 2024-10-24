@@ -8,6 +8,7 @@
  <%= image_tag @list.image, size: "300×300" %>
 <% else %>
  <%= image_tag 'no_image', size: "300×300" %>
-<% end %> 
+<% end %>
 
 <%= link_to "編集", edit_list_path(@list.id) %>
+<%= link_to "削除", list_path(@list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
