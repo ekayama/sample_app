@@ -6,9 +6,17 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-     redirect_to list_path(@list.id)
+      flash[:notice] = "投稿に成功しました."
+      redirect_to list_path(@list.id)
     else
-     redirect_to new_list_path
+      # フラッシュメッセージを実装してみようでのコード↓
+      # redirect_toの時はflash、renderの時はflash.nowとセットで覚えておく
+      flash.now[:alert] = "投稿に失敗しました。"
+      render :new
+      # 前回までのコードい↓
+      # flash[:notice] = "投稿に失敗しました。"
+      # redirect_to new_list_path
+      # ーーーーーーーーーーーー
     end
   end
 
